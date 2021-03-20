@@ -1,7 +1,7 @@
-from torchtext.data.metrics import bleu_score
+import nltk
 from pyformer import translate_sentence
 
-def calculate_bleu(data, src_field, trg_field, model, device, max_len = 520):
+def calculate_bleu(data, src_field, trg_field, model, device, max_len = 500):
     
     trgs = []
     pred_trgs = []
@@ -18,5 +18,9 @@ def calculate_bleu(data, src_field, trg_field, model, device, max_len = 520):
         
         pred_trgs.append(pred_trg)
         trgs.append(trg)
+        # print(len(trg), len(pred_trg))
+        if len(trg) < 2 or len(pred_trg) < 2:
+            print(src)
+    # print(trgs[0], pred_trgs[0])
     assert(len(trgs) == len(pred_trgs))
-    return bleu_score(pred_trgs, trgs)
+    return nltk.translate.bleu_score.corpus_bleu(trgs, pred_trgs)

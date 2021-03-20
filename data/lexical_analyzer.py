@@ -54,13 +54,16 @@ class LexicalAnalyzer:
             ('SPACE', r' '),
             ('ESCAPE_SEQ', r'\\.'),
             ('LINEBREAK', r'\\'),
-#             ('APOSTROPHE', r'\''),
             ('COMMENT', r'#.*'),
+            ('DECORATOR', r'@'),
             ('S_MULTILINECOMMENT', r"'''[^'\\\\]*(?:(?:\\\\.|'{1,2}(?!'))[^'\\\\]*)*'''"),
             ('D_MULTILINECOMMENT', r'"""[^"\\\\]*(?:(?:\\\\.|"{1,2}(?!"))[^"\\\\]*)*"""'),
-            ('S_STRING_CONST', r'\'.*?\'[^\']'),
-            ('D_STRING_CONST', r'".*?"[^"]'),
+            ('S_STRING_CONST', r'\'.*\''),
+            ('D_STRING_CONST', r'".*"'),
             ('MISMATCH', r'.'), 
+#                         ('D_STRING_CONST', r'''
+#                             (?x)(?<!\\)".*?(?<!\\)"         
+#                         ''' ),
             
             
             
@@ -79,9 +82,10 @@ class LexicalAnalyzer:
         for m in re.finditer(tokens_join, code):
             token_type = m.lastgroup
             token_lexeme = m.group(token_type)
-
+            print('TOKEN : ', token_type, 'LEXEME : ', token_lexeme)
 
             if token_type == 'MISMATCH':
+                print('this ::: ', token_lexeme)
                 raise RuntimeError('%r unexpected on line %d' % (token_lexeme, self.lin_num))
             else:
                     col = m.start() - lin_start

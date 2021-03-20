@@ -1,3 +1,5 @@
+import torch
+
 def evaluate(model, iterator, criterion):
     
     model.eval()

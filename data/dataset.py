@@ -81,8 +81,12 @@ def make_dataset_vocab(filename, src_params, trg_params, lexer, src_min_freq, tr
     TRG.build_vocab(dataset, min_freq = trg_min_freq)
     return dataset, SRC, TRG
 
-def get_train_test_iterator(dataset, train_split, SEED, sort = False, batch_size = 32, device = 'cpu'):
+def get_train_test_data(dataset, train_split, SEED):
     (train_data, test_data) = dataset.split(split_ratio=[train_split, 1 - train_split], random_state=random.seed(SEED))
+    return train_data, test_data
+
+def get_train_test_iterator(train_data, test_data, sort = False, batch_size = 32, device = 'cpu'):
+    
     train_iterator, test_iterator = BucketIterator.splits(
             (train_data, test_data),
             sort=False,

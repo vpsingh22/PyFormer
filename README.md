@@ -10,7 +10,8 @@ The dataset is a small set of english text and their respective python code, app
 The data was cleaned manually by removing unneccessary indentation and comments. 
 
 The data needs to be tokenized  properly before feeding it to the model. The english sentences were tokenized using spacy.
-To tokenize the python code, a **lexical analyzer tool** is written which tokenizes the code according to python. If you wish to use the model for your language you can modify the tool [here](https://github.com/vpsingh22/PyFormer/blob/master/data/lexical_analyzer.py)
+To tokenize the python code, a **lexical analyzer tool** is written which tokenizes the code according to python.<br>
+If you wish to use the model for your language you can modify the tool [here](https://github.com/vpsingh22/PyFormer/blob/master/data/lexical_analyzer.py)
 
 ## Embeddings Training
 The embeddings are trained using glove. If you wish not to train the embeddings you can set embeddings_training to False in config.
@@ -25,7 +26,10 @@ Click [here](https://dev.to/vpsingh22/detailed-explanation-to-attention-is-all-y
 ## Results
 The model gives pretty good results.<br>
 ![ss14](./sample_outputs/ss14.png)<br>
-The above is a sample example. You can view the results of 35+ examples [here](https://github.com/vpsingh22/PyFormer/tree/master/sample_outputs)
+The above is a sample example. You can view the results of 35+ examples [here](https://github.com/vpsingh22/PyFormer/blob/master/sample_outputs/README.md)
+
+## Hyperparameters
+
 
 ## Metrics
 The model uses cross entropy loss function. <br>

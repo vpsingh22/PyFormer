@@ -18,9 +18,9 @@ from model.seq2seq import Encoder, Decoder, Seq2Seq
 def translate_sentence(sentence, src_field, trg_field, model, device, max_len = 500):
 
     model.eval()
-    nlp = spacy.load('en')
-    if isinstance(sentence, str):
         
+    if isinstance(sentence, str):
+        nlp = spacy.load('en')
         tokens = [token.text.lower() for token in nlp(sentence)]
     else:
         tokens = [token.lower() for token in sentence]
@@ -76,7 +76,7 @@ class PyFormer:
         output = ""
         for i in range(len(translation)):
             if translation[i] not in [' ', '\n', '\t']:
-                if (i + 1 < len(translation) and translation[i + 1] in ['.', '(', ')', '[', ']', ',']) or translation[i] in ['.', '(', ')', '[', ']']:
+                if (i + 1 < len(translation) and translation[i + 1] in ['.', '(', ')', ',']) or translation[i] in ['.', '(', ')']:
                     output += translation[i]
                 else: 
                     output += translation[i] + ' '

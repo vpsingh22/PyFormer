@@ -2,7 +2,7 @@ config = {
 
     'SEED' : 1234,
 
-    'train_embeddings' : True,
+    'train_embeddings' : False,
     'gloveconfig' : {
         'EMB_DIM' : 256, # SHOULD BE EQUAL TO DECODER HID_DIM
         'device' : 'cuda',

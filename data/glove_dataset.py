@@ -13,7 +13,7 @@ class GloveDataset:
     def __init__(self, corpus, lexer, TRG, n_words=200000, window_size=5):
         self._window_size = window_size
         text = ""
-        
+
 
         _, lexe, __, ___ = lexer.tokenize(text)
         tokens = []
@@ -33,7 +33,6 @@ class GloveDataset:
 
         self._create_coocurrence_matrix()
 
-        print("# of words: {}".format(len(self._tokens)))
         print("Vocabulary length: {}".format(self._vocab_len))
 
     def _create_coocurrence_matrix(self):

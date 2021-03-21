@@ -6,6 +6,23 @@ PyFormer is a transformer machine translation model that converts **english sent
 
 The dataset is a small set of english text and their respective python code, approx 4000 entries. You can download the dataset [here](https://docs.google.com/document/d/1ztL3HDsDBb688PnaglBpfRLUZpZFNndHL90e23JIhy4/edit?usp=sharing)
 
+## Project Setup
+
+### Training 
+Place the dataset file in the root folder. <br>
+You can set the configuration in the config file. <br>
+To train the model execute the below command.<br>
+``` $ python3 main.py ```
+
+### Inferencing
+The training script saves the model and the source and target vocabularies. <br>
+If you wish to migrate to another machine, please place save them in the root directory of the project.<br>
+Add your english sentences to a file and add the filename to the config.<br>
+The below command can be used to inference the model.
+
+``` $ python3 pyformer.py ```
+
+
 ## Data Cleaning and Preparation
 The data was cleaned manually by removing unneccessary indentation and comments. 
 

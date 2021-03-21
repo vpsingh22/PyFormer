@@ -147,6 +147,7 @@ if __name__ == '__main__':
             output = pyformer.post_process(translation)
             print(Back.LIGHTCYAN_EX + output + '\n')
             print('\n\n')
-            if config['display_attention']:
-                display_attention(input_sentence, translation, attention)
+            # if config['display_attention']:
+            #     display_attention(input_sentence, translation, attention)
+            # print('\n\n')
 

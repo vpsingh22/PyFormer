@@ -1,6 +1,6 @@
 # PyFormer
 
-PyFormer is a transformer machine translation model that converts ** english sentences to python code**.
+PyFormer is a transformer machine translation model that converts **english sentences to python code**.
 
 ## Dataset
 

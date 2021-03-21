@@ -1,6 +1,6 @@
 # PyFormer
 
-PyFormer is a transformer machine translation model that converts english sentences to python. 
+PyFormer is a transformer machine translation model that converts ** english sentences to python code**.
 
 ## Dataset
 
@@ -27,9 +27,6 @@ Click [here](https://dev.to/vpsingh22/detailed-explanation-to-attention-is-all-y
 The model gives pretty good results.<br>
 ![ss14](./sample_outputs/ss14.png)<br>
 The above is a sample example. You can view the results of 35+ examples [here](https://github.com/vpsingh22/PyFormer/blob/master/sample_outputs/README.md)
-
-## Hyperparameters
-
 
 ## Metrics
 The model uses cross entropy loss function. <br>

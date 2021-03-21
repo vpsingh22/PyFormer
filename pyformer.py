@@ -18,9 +18,9 @@ from model.seq2seq import Encoder, Decoder, Seq2Seq
 def translate_sentence(sentence, src_field, trg_field, model, device, max_len = 500):
 
     model.eval()
-        
+    nlp = spacy.load('en')
     if isinstance(sentence, str):
-        nlp = spacy.load('en')
+        
         tokens = [token.text.lower() for token in nlp(sentence)]
     else:
         tokens = [token.lower() for token in sentence]
@@ -76,7 +76,7 @@ class PyFormer:
         output = ""
         for i in range(len(translation)):
             if translation[i] not in [' ', '\n', '\t']:
-                if (i + 1 < len(translation) and translation[i + 1] == '.') or (i - 1 >= 0 and translation[i - 1]) == '.':
+                if (i + 1 < len(translation) and translation[i + 1] in ['.', '(', ')', '[', ']', ',']) or translation[i] in ['.', '(', ')', '[', ']']:
                     output += translation[i]
                 else: 
                     output += translation[i] + ' '
@@ -87,7 +87,7 @@ class PyFormer:
 
 
 if __name__ == '__main__':
-
+    from colorama import Fore, Back, Style
     from config import config
 
     HID_DIM = config['HID_DIM']
@@ -110,17 +110,15 @@ if __name__ == '__main__':
 
     pyformer = PyFormer(src_vocab_file, trg_vocab_file)
     model = pyformer.load_model(weights, device)
-    input_sentence = ''
-    while(True):
-        try:
-            input_sentence = input('Enter sentence : ')
-            if input_sentence == 'q' or input_sentence == 'quit': break
+    ex_file = config['examples_file']
+    with open(ex_file, 'r') as ex:
+        input_sentences = ex.readlines()
+        for input_sentence in input_sentences:
+            print(Back.LIGHTYELLOW_EX + input_sentence + '\n')
 
             translation, attention = translate_sentence(input_sentence, pyformer.SRC, pyformer.TRG, model, device)
+            translation = translation[:-1]
             output = pyformer.post_process(translation)
-            print(output)
-            print()
-
-        except KeyError:
-            print("Error: Encountered unknown word.")
+            print(Back.LIGHTCYAN_EX + output + '\n')
+            print('\n\n')
 

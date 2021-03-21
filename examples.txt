@@ -1,0 +1,40 @@
+write a program to add two numbers
+Write a python function to merge two given lists into one
+Write a program to print the multiplication table of a given number
+Write a python function to find the area of a circle, whose radius is given
+Write a function that returns the sum of digits of a given number
+Write a program to calculate and print the volume of a cylinder
+Write a function to calculate compound interest, given p, r, t
+Write a program that prints all the alphabets in a string and skips all other characters
+write a Python program to get the largest number from a list
+write a python program to check name exists in given list
+write a python to check two numbers are greater than or equal or less than
+python program to find power of number using recursion
+Python program to find the  difference between two times
+Python program to find time for a given angle.
+Write a function to get list of profanity words from Google profanity URL
+write a program to accept a string if it contains all vowels
+write a program to rotate string left and right by d length
+write a program to remove the duplicate words
+write program to extract digits from Tuple list
+write a program to convert time from 12 hour to 24 hour format
+write a program to delete all duplicate letters in a string
+write a program to print Maximum frequency character in String
+write a program to check if a string is binary or not 
+write a program to check whether a given string is Heterogram or not
+write a program to check whether a given key already exists in a dictionary
+write a program to reverse words of string
+write a program to remove i-th indexed character from a string
+write a program extract least frequency element
+write a program to check 2 lists and find if any element is common
+write a program to check if the year is a leap year
+write a program to check if the number is a prime numnber
+write a program to check Armstrong number
+write a  program to find HCF
+write a  program to sort words in alphabetic order
+write a program to remove punctuation from a string
+write a program to display the powers of 2 using anonymous function
+write a program to return the absolute value in Python
+write a program to design a dice throw function
+write a program to find variance of a dataset
+Write a python program to Implement Binary Search without Recursion and print the key element if found

@@ -56,4 +56,9 @@ config = {
     'min_train_loss_model' : 'min_train_loss_model.pt',
     'min_val_loss_model' : 'min_val_loss_model.pt',
     'weights' : 'min_train_loss_model.pt',
+
+    'calculate_bleu' : False,
+
+    'examples_file' : 'examples.txt'
+
 }

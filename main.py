@@ -204,12 +204,13 @@ for epoch in range(N_EPOCHS):
     print(f'\t Val. Loss: {valid_loss:.3f} |  Val. PPL: {math.exp(valid_loss):7.3f}')
 
 
-print()
-from metrics import calculate_bleu
+if config['calculate_bleu']:
+    print()
+    from metrics import calculate_bleu
 
-score = calculate_bleu(train_data, SRC, TRG, model, device)
-print(f'BLEU score = {score:.2f}')
+    score = calculate_bleu(train_data, SRC, TRG, model, device)
+    print(f'Train BLEU score = {score:.2f}')
 
-score = calculate_bleu(test_data, SRC, TRG, model, device)
-print(f'BLEU score = {score:.2f}')
+    score = calculate_bleu(test_data, SRC, TRG, model, device)
+    print(f'Test BLEU score = {score:.2f}')
 

@@ -11,13 +11,14 @@ import time
 
 from .lexical_analyzer import LexicalAnalyzer
 lexer = LexicalAnalyzer()
+nlp = spacy.load('en')
 
 def tokenize_english(text):
     """
     Tokenizes English text from a string into a list of strings
     """
-    text = text.lower()
-    return text.split()
+    tokens = [token.text.lower() for token in nlp(text)]
+    return tokens
 
 def tokenize_python(text):
     """

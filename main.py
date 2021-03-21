@@ -5,6 +5,7 @@ import torch.optim as optim
 import random
 import numpy as np
 import time
+import math
 
 import pickle
 
@@ -45,6 +46,9 @@ pickle.dump(TRG, trg_vocab)
 trg_vocab.close() 
 
 if config['train_embeddings']:
+
+    print('start training glove embeddings .. \n')
+
     from data.glove_dataset import GloveDataset
     from model.glove_model import GloveModel
     from model.utils import weight_func, wmse_loss
@@ -66,22 +70,26 @@ if config['train_embeddings']:
         if glovedevice == 'cpu':
             print('cuda not available. glovedevice switched to cpu ... ')
     f = open('code_datafile', 'w+')
-    for i in range(len(dataset.examples)):
-        f.write(dataset.examples[i].trg)
+    with open(filename, 'r') as df:
+        lines = df.readlines()
+        for line in lines:
+            if line[0] == '#':
+                continue
+            f.write(line + '\n')
     f.close()
     from data.glove_dataset import GloveDataset
     glovedataset = GloveDataset(open("code_datafile").read(), lexer, TRG, 10000000)
-    glovemodel = GloveModel(dataset._vocab_len, EMB_DIM)
+    glovemodel = GloveModel(glovedataset._vocab_len, EMB_DIM)
     glovemodel.to(glovedevice)
 
     optimizer = optim.Adagrad(glovemodel.parameters(), lr=lr)
 
-    n_batches = int(len(dataset._xij) / BATCH_SIZE)
+    n_batches = int(len(glovedataset._xij) / BATCH_SIZE)
     loss_values = list()
     for e in range(1, N_EPOCHS+1):
         batch_i = 0
 
-        for x_ij, i_idx, j_idx in dataset.get_batches(BATCH_SIZE):
+        for x_ij, i_idx, j_idx in glovedataset.get_batches(BATCH_SIZE):
 
             batch_i += 1
 
@@ -99,12 +107,11 @@ if config['train_embeddings']:
 
             if batch_i % 30 == 0:
                 print("Epoch: {}/{} \t Batch: {}/{} \t Loss: {}".format(e, N_EPOCHS, batch_i, n_batches, np.mean(loss_values[-20:])))  
-
-        print("Saving model...")
-        torch.save(glovemodel.state_dict(), "glove_weights.pt")
-
-
-
+        if e % 50 == 0:
+            print("Saving model...")
+            torch.save(glovemodel.state_dict(), "glove_weights.pt")
+    
+    print('finished trianing embeddings .. \n')
 
 
 train_split = config['train_split']
@@ -169,6 +176,7 @@ criterion = nn.CrossEntropyLoss(ignore_index = TRG_PAD_IDX)
 
 
 # TRAINING 
+print('started training model .. \n')
 
 best_valid_loss = float('inf')
 best_train_loss = float('inf')

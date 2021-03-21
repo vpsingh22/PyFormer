@@ -6,12 +6,12 @@ config = {
     'gloveconfig' : {
         'EMB_DIM' : 256, # SHOULD BE EQUAL TO DECODER HID_DIM
         'device' : 'cuda',
-        'N_EPOCHS' = 10,
-        'BATCH_SIZE' = 2048,
-        'X_MAX' = 100,
-        'ALPHA' = 0.75,
+        'N_EPOCHS' : 100,
+        'BATCH_SIZE' : 2048,
+        'X_MAX' : 100,
+        'ALPHA' : 0.75,
         'learning_rate' : 0.05,
-    }
+    },
 
     'datafile' : 'english_python_data.txt',
     'src_params' : {
@@ -50,7 +50,7 @@ config = {
 
     
     'LEARNING_RATE' : 0.0005,
-    'N_EPOCHS' : 20,
+    'N_EPOCHS' : 40,
     'CLIP' : 1,
 
     'min_train_loss_model' : 'min_train_loss_model.pt',

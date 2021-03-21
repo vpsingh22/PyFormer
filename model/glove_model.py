@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+
 class GloveModel(nn.Module):
     def __init__(self, num_embeddings, embedding_dim):
         super(GloveModel, self).__init__()

@@ -51,8 +51,8 @@ def translate_sentence(sentence, src_field, trg_field, model, device, max_len = 
 
 class PyFormer:
     def __init__(self, src_vocab_file, trg_vocab_file):
-        self.SRC = self.load_src_vocab(src_vocab_file)
-        self.TRG = self.load_trg_vocab(trg_vocab_file)
+        self.SRC = self.load_vocab(src_vocab_file)
+        self.TRG = self.load_vocab(trg_vocab_file)
 
     def load_model(self, weights, device):
         INPUT_DIM = len(self.SRC.vocab)
@@ -65,21 +65,18 @@ class PyFormer:
         model.load_state_dict(torch.load(weights))
         return model
 
-    def load_src_vocab(self, src_vocab_file):
-        src_file = open(src_vocab_file, 'rb')      
-        self.SRC = pickle.load(src_vocab_file) 
-        src_file.close()
+    def load_vocab(self, vocab_file):
+        file = open(vocab_file, 'rb')      
+        vocab = pickle.load(file) 
+        file.close()
+        return vocab
     
-    def load_trg_vocab(self, trg_vocab_file):
-        trg_file = open(trg_vocab_file, 'rb')      
-        self.TRG = pickle.load(trg_vocab_file) 
-        trg_file.close() 
 
     def post_process(self, translation):
         output = ""
         for i in range(len(translation)):
             if translation[i] not in [' ', '\n', '\t']:
-                if translation[i + 1] == '.' or translation[i - 1] == '.':
+                if (i + 1 < len(translation) and translation[i + 1] == '.') or (i - 1 >= 0 and translation[i - 1]) == '.':
                     output += translation[i]
                 else: 
                     output += translation[i] + ' '
@@ -122,6 +119,7 @@ if __name__ == '__main__':
             translation, attention = translate_sentence(input_sentence, pyformer.SRC, pyformer.TRG, model, device)
             output = pyformer.post_process(translation)
             print(output)
+            print()
 
         except KeyError:
             print("Error: Encountered unknown word.")

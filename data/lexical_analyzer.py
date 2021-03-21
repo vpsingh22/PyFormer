@@ -82,10 +82,10 @@ class LexicalAnalyzer:
         for m in re.finditer(tokens_join, code):
             token_type = m.lastgroup
             token_lexeme = m.group(token_type)
-            print('TOKEN : ', token_type, 'LEXEME : ', token_lexeme)
+            # print('TOKEN : ', token_type, 'LEXEME : ', token_lexeme)
 
             if token_type == 'MISMATCH':
-                print('this ::: ', token_lexeme)
+                print('lexeme mismatch : ', token_lexeme)
                 raise RuntimeError('%r unexpected on line %d' % (token_lexeme, self.lin_num))
             else:
                     col = m.start() - lin_start

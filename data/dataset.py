@@ -86,7 +86,6 @@ def get_train_test_data(dataset, train_split, SEED):
     return train_data, test_data
 
 def get_train_test_iterator(train_data, test_data, sort = False, batch_size = 32, device = 'cpu'):
-    
     train_iterator, test_iterator = BucketIterator.splits(
             (train_data, test_data),
             sort=False,

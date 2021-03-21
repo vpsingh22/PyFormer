@@ -2,6 +2,17 @@ config = {
 
     'SEED' : 1234,
 
+    'train_embeddings' : True,
+    'gloveconfig' : {
+        'EMB_DIM' : 256, # SHOULD BE EQUAL TO DECODER HID_DIM
+        'device' : 'cuda',
+        'N_EPOCHS' = 10,
+        'BATCH_SIZE' = 2048,
+        'X_MAX' = 100,
+        'ALPHA' = 0.75,
+        'learning_rate' : 0.05,
+    }
+
     'datafile' : 'english_python_data.txt',
     'src_params' : {
         'init_token' : '<sos>',

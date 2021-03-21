@@ -50,7 +50,7 @@ config = {
 
     
     'LEARNING_RATE' : 0.0005,
-    'N_EPOCHS' : 50,
+    'N_EPOCHS' : 25,
     'CLIP' : 1,
 
     'min_train_loss_model' : 'min_train_loss_model.pt',

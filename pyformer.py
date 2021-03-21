@@ -12,8 +12,34 @@ import pickle
 from data.dataset import make_dataset_vocab
 from data.lexical_analyzer import LexicalAnalyzer
 from model.seq2seq import Encoder, Decoder, Seq2Seq
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 
+def display_attention(sentence, translation, attention, n_heads = 8, n_rows = 4, n_cols = 2):
+    
+    assert n_rows * n_cols == n_heads
+    
+    if isinstance(sentence, str):
+        nlp = spacy.load('en')
+        tokens = [token.text.lower() for token in nlp(sentence)]
+    else:
+        tokens = [token.lower() for token in sentence]
 
+    fig = plt.figure(figsize=(15,25))
+    
+    for i in range(n_heads):
+        
+        ax = fig.add_subplot(n_rows, n_cols, i+1)
+        
+        _attention = attention.squeeze(0)[i].cpu().detach().numpy()
+        cax = ax.matshow(_attention, cmap='bone')
+        ax.tick_params(labelsize=12)
+        ax.set_xticklabels(['']+['<sos>']+[t.lower() for t in sentence]+['<eos>'], 
+                           rotation=45)
+        ax.set_yticklabels(['']+translation)
+        ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
+        ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
+    plt.show()
 
 def translate_sentence(sentence, src_field, trg_field, model, device, max_len = 500):
 
@@ -121,4 +147,6 @@ if __name__ == '__main__':
             output = pyformer.post_process(translation)
             print(Back.LIGHTCYAN_EX + output + '\n')
             print('\n\n')
+            if config['display_attention']:
+                display_attention(input_sentence, translation, attention)
 

@@ -50,7 +50,7 @@ config = {
 
     
     'LEARNING_RATE' : 0.0005,
-    'N_EPOCHS' : 50,
+    'N_EPOCHS' : 60,
     'CLIP' : 1,
 
     'min_train_loss_model' : 'min_train_loss_model.pt',
@@ -58,7 +58,8 @@ config = {
     'weights' : 'min_train_loss_model.pt',
 
     'calculate_bleu' : False,
+    'display_attention' : True,
 
-    'examples_file' : 'examples.txt'
+    'examples_file' : 'examples.txt',
 
 }

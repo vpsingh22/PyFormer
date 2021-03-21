@@ -207,6 +207,9 @@ for epoch in range(N_EPOCHS):
 print()
 from metrics import calculate_bleu
 
+score = calculate_bleu(train_data, SRC, TRG, model, device)
+print(f'BLEU score = {score:.2f}')
+
 score = calculate_bleu(test_data, SRC, TRG, model, device)
-print(f'BLEU score = {score*100:.2f}')
+print(f'BLEU score = {score:.2f}')
 

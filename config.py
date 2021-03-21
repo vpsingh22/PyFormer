@@ -32,7 +32,7 @@ config = {
     'trg_vocab_file' : 'trg_vocab.pickle',
 
     # train / test iterators params
-    'train_split' : 0.85,
+    'train_split' : 0.95,
     'sort' : False,
     'batch_size' : 32,
     'device' : 'cuda',
@@ -50,7 +50,7 @@ config = {
 
     
     'LEARNING_RATE' : 0.0005,
-    'N_EPOCHS' : 40,
+    'N_EPOCHS' : 50,
     'CLIP' : 1,
 
     'min_train_loss_model' : 'min_train_loss_model.pt',

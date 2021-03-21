@@ -1,4 +1,5 @@
 import nltk
+from nltk.translate.bleu_score import SmoothingFunction
 from pyformer import translate_sentence
 
 def calculate_bleu(data, src_field, trg_field, model, device, max_len = 500):
@@ -23,4 +24,5 @@ def calculate_bleu(data, src_field, trg_field, model, device, max_len = 500):
             print(src)
     # print(trgs[0], pred_trgs[0])
     assert(len(trgs) == len(pred_trgs))
-    return nltk.translate.bleu_score.corpus_bleu(trgs, pred_trgs)
+    smooth_fn = SmoothingFunction().method4
+    return nltk.translate.bleu_score.corpus_bleu(trgs, pred_trgs, smoothing_function = smooth_fn)

@@ -1,4 +1,7 @@
 ## Results
+
+**Note : The screenshots are taken from colab where by default the tab is equivalent to 8 spaces. The actual terminal output will just return a 4 space tab.**
+
 ![ss1](./ss1.png)<br>
 ![ss2](./ss2.png)<br>
 ![ss3](./ss3.png)<br>
